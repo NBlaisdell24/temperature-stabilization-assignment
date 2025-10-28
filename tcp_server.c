@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <math.h>
 #include <string.h>
 #include <unistd.h>
 #include <stdlib.h>
@@ -125,8 +126,8 @@ int main(void)
 
         }
 
-        // Modify Temperature 
-        float updatedTemp = temperature[0] + temperature[1] + temperature[2] + temperature[3];
+        // Modify Temperature  THIS IS YOUR FIRST STEP CHANGE THE EQUATION
+        float updatedTemp = (2 * updatedTemp + + temperature[0] + temperature[1] + temperature[2] + temperature[3]) / 6;
         updatedTemp += updatedTemp / 4.0;  
 
 
@@ -146,17 +147,18 @@ int main(void)
 
         printf("\n");
 
-        // Check stability condition 
-        if (updatedTemp == 0)
+        // Check stability condition change to previousTemp = currentTemp in if condit
+        if (fabsf(updatedTemp - *temperature) < 0.1){ //abs(current - previous) < 0.1
             stable = true; 
 
-    }
+        }
  
     // Closing all sockets
-    for (int i = 0; i < numExternals; i++)
+    for (int i = 0; i < numExternals; i++) {
         close(client_socket[i]);
-
+    }
     close(socket_desc);
     
     return 0;
+}
 }

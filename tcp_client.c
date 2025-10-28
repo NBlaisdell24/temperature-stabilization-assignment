@@ -2,6 +2,7 @@
 #include <string.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include <stdbool.h>
 #include <sys/types.h> 
 #include <sys/socket.h>
 #include <arpa/inet.h>
@@ -42,8 +43,13 @@ int main (int argc, char *argv[])
         printf("Unable to connect\n");
         return -1;
     }
+//WHILE GOES HERE
+ int stable = false;
+ while ( !stable ){
+
     printf("Connected with server successfully\n");
     printf("--------------------------------------------------------\n\n");
+    initialTemperature = (3 * initialTemperature + 2 * externalIndex) / 5; //externalIndex = updatedTemp??
        
     // Package to the sent to server 
     the_message = prepare_message(externalIndex, initialTemperature); 
@@ -63,9 +69,13 @@ int main (int argc, char *argv[])
     
     printf("--------------------------------------------------------\n");
     printf("Updated temperature sent by the Central process = %f\n", the_message.T);
-    
+  
     // Close the socket:
+    if (the_message.T < 0) {
+     break;
+    }
     close(socket_desc);
     
     return 0;
+}
 }
