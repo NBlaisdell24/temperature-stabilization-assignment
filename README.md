@@ -143,6 +143,9 @@ Open four terminals and in each one run:
 
 ![sample_run](sample_run.jpg)
 
+![execution](executionOfAll.PNG)
+
+This is the execution of the four clients and the server all in one screenshot. The clients send information to the server one by one, and the calculations are done through the client and server after the updated temperature formulas execute.
 
 The book is written is a very conversational style that is both enjoyable and accessible. I think you will enjoy reading it. Give it a try if you have time. If you want just to learn about serialization in network communication then read the Section **7.5 Serialization—How to Pack Data** (https://beej.us/guide/bgnet/html/split-wide/slightly-advanced-techniques.html#serialization). 
 
